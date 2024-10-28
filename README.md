@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Tazmic DND
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This React component implements a drag-and-drop interface for customizing clothing items with different patterns. It allows users to select products (shirt, pants, or shoes) and apply patterns (polka dot or stripes) to them.
 
-## Available Scripts
+## Problem Statement
 
-In the project directory, you can run:
+Create a clothing customizer that:
+1. Allows users to drag and drop products onto a workspace
+2. Enables applying patterns to the selected products
+3. Focuses the product when dragged over the workspace
+4. Highlights the toolbar when a product is dropped
 
-### `npm start`
+## Solution Breakdown
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 1. State Management
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The component uses React's `useState` hook to manage the following states:
+- `selectedProduct`: Stores the currently selected product
+- `productPattern`: Stores the currently applied pattern
+- `isFocused`: Boolean to track if the workspace is focused
+- `isToolbarHighlighted`: Boolean to track if the toolbar is highlighted
 
-### `npm test`
+### 2. Canvas Manipulation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The `canvasRef` is used to manipulate the HTML5 canvas element:
+- `updateCanvas()` function draws the selected product and applies the pattern
+- `resizePattern()` function resizes the pattern to fit the product dimensions
 
-### `npm run build`
+### 3. Drag and Drop Implementation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The component implements the HTML5 Drag and Drop API:
+- `handleDragStart()`: Initiates the drag operation
+- `handleDragOver()`: Prevents default behavior and sets focus
+- `handleDragLeave()`: Removes focus when leaving the workspace
+- `handleDrop()`: Handles the drop event, updates states, and triggers updates
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 4. Effect Hook
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The `useEffect` hook is used to trigger the `updateCanvas()` function whenever the selected product or pattern changes.
 
-### `npm run eject`
+## Algorithms
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Pattern Resizing Algorithm
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The `resizePattern()` function uses the following algorithm to resize the pattern:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Create an offscreen canvas
+2. Calculate the scaling factor to maintain aspect ratio
+3. Calculate the new dimensions of the pattern
+4. Center the pattern on the offscreen canvas
+5. Draw the resized pattern onto the offscreen canvas
+6. Return the offscreen canvas for use in pattern application
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Pattern Application Algorithm
 
-## Learn More
+The pattern is applied to the product using the following steps:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Draw the product image onto the main canvas
+2. Create a pattern from the resized pattern image
+3. Set the global composite operation to 'source-atop'
+4. Fill the canvas with the pattern
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This ensures that the pattern is only applied within the non-transparent areas of the product image.
 
-### Code Splitting
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+To use this component:
 
-### Analyzing the Bundle Size
+1. Import the necessary images
+2. Include the component in your React application
+3. Ensure that the CSS file (`App.css`) is properly linked and contains the required styles
+4. The component will render a toolbar with draggable products and patterns, and a workspace where these can be dropped and customized
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

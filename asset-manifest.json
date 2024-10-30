@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Tazmic-DND/static/css/main.71dda7ca.css",
+    "main.js": "/Tazmic-DND/static/js/main.2aacde01.js",
+    "static/js/453.72c64d28.chunk.js": "/Tazmic-DND/static/js/453.72c64d28.chunk.js",
+    "static/media/polka_dot.webp": "/Tazmic-DND/static/media/polka_dot.f9853d6da66d07e58b4a.webp",
+    "static/media/stripes.webp": "/Tazmic-DND/static/media/stripes.157224ddc9fddffd05cc.webp",
+    "static/media/pants_1.webp": "/Tazmic-DND/static/media/pants_1.e442fbd0377e811bff19.webp",
+    "static/media/shirt_1.webp": "/Tazmic-DND/static/media/shirt_1.49f283b897c0c1ac9689.webp",
+    "static/media/shoes_1.webp": "/Tazmic-DND/static/media/shoes_1.f2efb38ccd1039f455a6.webp",
+    "index.html": "/Tazmic-DND/index.html",
+    "main.71dda7ca.css.map": "/Tazmic-DND/static/css/main.71dda7ca.css.map",
+    "main.2aacde01.js.map": "/Tazmic-DND/static/js/main.2aacde01.js.map",
+    "453.72c64d28.chunk.js.map": "/Tazmic-DND/static/js/453.72c64d28.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.71dda7ca.css",
+    "static/js/main.2aacde01.js"
+  ]
+}
